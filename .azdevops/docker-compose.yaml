@@ -4,28 +4,28 @@ services:
     build:
       context: ../src/poi
       dockerfile: Dockerfile
-    image: tripinsights/poi:${TAG}
+    image: tripinsights/poi:${IMAGE_TAG}
 
   trips:
     build:
       context: ../src/trips
       dockerfile: Dockerfile
-    image: tripinsights/trips:${TAG}
+    image: tripinsights/trips:${IMAGE_TAG}
   
   user-java:
     build:
       context: ../src/user-java
       dockerfile: Dockerfile
-    image: tripinsights/user-java:${TAG}
+    image: tripinsights/user-java:${IMAGE_TAG}
   
   userprofile:
     build:
       context: ../src/userprofile
       dockerfile: Dockerfile
-    image: tripinsights/userprofile:${TAG}
+    image: tripinsights/userprofile:${IMAGE_TAG}
 
   tripviewer:
     build:
       context: ../src/tripviewer
       dockerfile: Dockerfile
-    image: tripinsights/tripviewer:${TAG}
+    image: tripinsights/tripviewer:${IMAGE_TAG}
