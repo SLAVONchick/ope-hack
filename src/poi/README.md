@@ -119,3 +119,13 @@ Get healthcheck status
 ```bash
 curl -i -X GET 'http://localhost:8080/api/poi/healthcheck' 
 ```
+
+
+# How to run this stuff up
+
+docker run --network=my-bridge -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=!@#QWEasd" -p 1433:1433 --name humongoussqlserver -d mcr.microsoft.com/mssql/server:2017-latest
+`docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "!@#QWEasd"`
+
+docker run --network=my-bridge -d -p 8080:80 --name poi -e "SQL_USER=sa" -e "SQL_SERVER=humongoussqlserver" -e "SQL_PASSWORD=!@#QWEasd" -e "ASPNETCORE_ENVIRONMENT=Local" tripinsights/poi:1.0
+
+docker run --network=my-bridge -e SQLFQDN=humongoussqlserver -e SQLUSER=sa -e "SQLPASS=!@#QWEasd" -e SQLDB=mydrivingDB openhack/data-load:v1
