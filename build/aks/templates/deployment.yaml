@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poi-deployment
+  labels:
+    app: poi-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: poi
+  template:
+    metadata:
+      labels:
+        app: poi
+    spec:
+      containers:
+      - name: poi
+        image: registryiwz4519.azurecr.io/tripinsights/poi:1.0
+        env:
+            - name: WEB_SERVER_BASE_URI
+              value: ""
+            - name: WEB_PORT
+              value: ""
+            - name: SQL_USER
+              value: ""
+            - name: SQL_PASSWORD
+              value: ""
+            - name: SQL_SERVER
+              value: ""
+            - name: SQL_DBNAME
+              value: ""
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Test"
+        ports:
+        - containerPort: 80
+---
