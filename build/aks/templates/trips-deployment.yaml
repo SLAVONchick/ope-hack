@@ -18,15 +18,14 @@ spec:
       - name: trips
         image: registryiwz4519.azurecr.io/tripinsights/trips:1.0
         env:
-        - name: SQL_SERVER
-          value: "sqlserveriwz4519.database.windows.net"        
-        - name: SQL_USER
-          value: "sqladminiWz4519"
-        - name: SQL_PASSWORD
-          value: "+cu*EwX#[pX3"
-        - name: SQL_DBNAME
-          value: "mydrivingDB"   
+            - name: SQL_SERVER
+              value: "sqlserveriwz4519.database.windows.net"        
+            - name: SQL_USER
+              value: "sqladminiWz4519"
+            - name: SQL_PASSWORD
+              value: "+cu*EwX#[pX3"
+            - name: SQL_DBNAME
+              value: "mydrivingDB"   
         ports:
         - containerPort: 80
-        type: LoadBalancer
                  
