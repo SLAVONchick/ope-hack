@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trips-deployment
+  labels:
+    app: trips-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trips
+  template:
+    metadata:
+      labels:
+        app: trips
+    spec:
+      containers:
+      - name: trips
+        image: registryiwz4519.azurecr.io/tripinsights/trips:1.0
+        env:
+        - name: SQL_SERVER
+          value: "sqlserveriwz4519.database.windows.net"        
+        - name: SQL_USER
+          value: "sqladminiWz4519"
+        - name: SQL_PASSWORD
+          value: "+cu*EwX#[pX3"
+        - name: SQL_DBNAME
+          value: "mydrivingDB"   
+        ports:
+        - containerPort: 80
+        type: LoadBalancer
+                 
