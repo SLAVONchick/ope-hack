@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-reader-binding
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-reader
+subjects:
+- kind: Group
+  namespace: api
+  name: 11e1b4bf-359a-4e83-876e-4f429b6fee8f
