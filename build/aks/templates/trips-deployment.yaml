@@ -21,11 +21,16 @@ spec:
             - name: SQL_SERVER
               value: "sqlserveriwz4519.database.windows.net"        
             - name: SQL_USER
-              value: "sqladminiWz4519"
+              valueFrom:
+                secretKeyRef:
+                  name: drivingdb-secrets
+                  key: dbname
             - name: SQL_PASSWORD
-              value: "+cu*EwX#[pX3"
+              valueFrom:
+                secretKeyRef:
+                  name: drivingdb-secrets
+                  key: dbpassword
             - name: SQL_DBNAME
               value: "mydrivingDB"   
         ports:
         - containerPort: 80
-                 
