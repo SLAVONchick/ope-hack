@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userprofile-deployment
+  labels:
+    app: userprofile
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: userprofile
+  template:
+    metadata:
+      labels:
+        app: userprofile
+    spec:
+      containers:
+      - name: userprofile
+        image: registryiwz4519.azurecr.io/tripinsights/userprofile:1.0
+        env:
+            - name: SQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: drivingdb-secrets
+                  key: dbname
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: drivingdb-secrets
+                  key: dbpassword
+            - name: SQL_SERVER
+              value: "sqlserveriwz4519.database.windows.net"
+            - name: SQL_DBNAME
+              value: "mydrivingDB"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userprofile-service
+spec:
+  selector:
+    app: userprofile
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
